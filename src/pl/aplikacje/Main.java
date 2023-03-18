@@ -1,29 +1,29 @@
 package pl.aplikacje;
 
+import pl.aplikacje.drive.Drive;
 import pl.aplikacje.drive.HDDDrive;
 import pl.aplikacje.drive.SSDDrive;
-import pl.aplikacje.usbdevice.MemoryStick;
-import pl.aplikacje.usbdevice.Mouse;
+import pl.aplikacje.file.File;
+import pl.aplikacje.file.imagefile.GIFImageFile;
+import pl.aplikacje.file.imagefile.JPGImageFile;
+import pl.aplikacje.file.musicfile.MP3MusicFile;
 
 public class Main {
 
     public static void main(String[] args) {
-        Monitor monitor = new Monitor();
-//        HDDDrive drive = new HDDDrive();
-        SSDDrive drive = new SSDDrive();
-        Computer computer = new Computer(monitor, drive);
+        GIFImageFile gif1 = new GIFImageFile("nazwa1.gif", 100);
+        JPGImageFile jpg1 = new JPGImageFile("nazwa1.jpg", 200, 80);
 
-//        drive.addFile(new File("jnsp.jpg"));
-//        drive.listFiles();
+        MP3MusicFile mp3file = new MP3MusicFile("plik.mp3", 4000, "Marilyn Manson",
+                "Broken Needle", 100);
 
-        MemoryStick memoryStick = new MemoryStick("Pendrive");
-        Mouse mouse = new Mouse("Mysz");
+        Drive drive = new HDDDrive();
+        drive.addFile(gif1);
+        drive.addFile(jpg1);
+        drive.addFile(mp3file);
 
-        computer.addUSBDevice(memoryStick);
-        computer.addUSBDevice(mouse);
-
-        memoryStick.eject();
-        computer.removeUSBDevice(memoryStick);
-        computer.removeUSBDevice(mouse);
+        drive.listFiles();
+        File file = drive.findFile("plik.mp3");
+        System.out.println(file.getSize());
     }
 }

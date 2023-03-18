@@ -1,6 +1,6 @@
 package pl.aplikacje.drive;
 
-import pl.aplikacje.File;
+import pl.aplikacje.file.File;
 
 public interface Drive {
     void addFile (File file);

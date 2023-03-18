@@ -58,10 +58,7 @@ public class Computer {
         boolean isDisconnected = usbDevice.disconnect();
 
         if (isDisconnected) {
-            System.out.println("Forcibly removed USB Device");
+            usbDevices.remove(usbDevice);
         }
-
-        usbDevices.remove(usbDevice);
-
     }
 }
